@@ -8,6 +8,11 @@ const cartEmpty = document.getElementById('cartEmpty');
 const cartItems = document.getElementById('cartItems');
 const cartFooter = document.getElementById('cartFooter');
 const cartTotal = document.getElementById('cartTotal');
+const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+const startNewOrderBtn = document.getElementById('startNewOrderBtn');
+const orderPopup = document.getElementById('orderPopup');
+const orderPopupOverlay = document.getElementById('orderPopupOverlay');
+
 
 async function init() {
   try {
@@ -157,6 +162,29 @@ function updateCartDisplay() {
   cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
 }
 
+
+function confirmOrder() {
+  if (cart.length === 0) return;
+  
+  orderPopup.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function startNewOrder() {
+  cart = [];
+  updateCartDisplay();
+  closeorderPopup();
+}
+
+function closeorderPopup() {
+  orderPopup.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+
+confirmOrderBtn.addEventListener('click', confirmOrder);
+startNewOrderBtn.addEventListener('click', startNewOrder);
+orderPopupOverlay.addEventListener('click', closeorderPopup);
 
 
 
