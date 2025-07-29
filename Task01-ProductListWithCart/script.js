@@ -1,7 +1,13 @@
 let products = [];
+let cart = [];
 
 // DOM elements
 const productsGrid = document.getElementById('productsGrid');
+const cartCount = document.getElementById('cartCount');
+const cartEmpty = document.getElementById('cartEmpty');
+const cartItems = document.getElementById('cartItems');
+const cartFooter = document.getElementById('cartFooter');
+const cartTotal = document.getElementById('cartTotal');
 
 async function init() {
   try {
@@ -43,13 +49,114 @@ function renderProducts() {
           class="product-card-button"
           onclick="addToCart('${product.name}')"
         >
-          <img src="./assets/images/icon-add-to-cart.svg" alt="">
+          <img src="./assets/images/icon-add-to-cart.svg" alt="add-to-cart">
           Add to Cart
         </button>
       </div>
     </article>
   `).join('');
 }
+
+function addToCart(productName) {
+  const product = products.find(p => p.name === productName);
+  if (!product) return;
+
+  const ExistingItem = cart.find(item => item.name === productName);
+  
+  if (ExistingItem) {
+    ExistingItem.quantity += 1;
+  } else {
+    cart.push({
+      ...product,
+      quantity: 1
+    });
+  }
+
+  updateCartDisplay();
+  showAddToCartFeedback(productName);
+}
+
+
+function RemoveFromCart(productName) {
+  cart = cart.filter(item => item.name !== productName);
+  updateCartDisplay();
+}
+
+
+function updateQuantity(productName, change) {
+  const item = cart.find(item => item.name === productName);
+  if (!item) return;
+
+  item.quantity += change;
+  
+  if (item.quantity <= 0) {
+    RemoveFromCart(productName);
+  } else {
+    updateCartDisplay();
+  }
+}
+
+
+function updateCartDisplay() {
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  // Update cart count
+  cartCount.textContent = `(${totalItems})`;
+
+  
+  if (cart.length === 0) {
+    cartEmpty.style.display = 'block';
+    cartItems.style.display = 'none';
+    cartFooter.style.display = 'none';
+  } else {
+    cartEmpty.style.display = 'none';
+    cartItems.style.display = 'block';
+    cartFooter.style.display = 'block';
+  }
+
+  // Render cart items
+  cartItems.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img 
+        src="${item.image.thumbnail}" 
+        alt="${item.name}"
+        class="cart-item-image"
+      >
+      <div class="cart-item-details">
+        <h4 class="cart-item-name">${item.name}</h4>
+        <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+      </div>
+      <div class="cart-item-controls">
+        <button 
+          class="cart-item-button-decrease"
+          onclick="updateQuantity('${item.name}', -1)"
+          aria-label="Decrease quantity"
+        >
+          <img src="./assets/images/icon-decrement-quantity.svg" alt="">
+        </button>
+        <span class="cart-item-quantity">${item.quantity}</span>
+        <button 
+          class="cart-item-button"
+          onclick="updateQuantity('${item.name}', 1)"
+          aria-label="Increase quantity"
+        >
+          <img src="./assets/images/icon-increment-quantity.svg" alt="">
+        </button>
+        <button 
+          class="cart-item-remove"
+          onclick="RemoveFromCart('${item.name}')"
+          aria-label="Remove item"
+        >
+          <img src="./assets/images/icon-remove-item.svg" alt="">
+        </button>
+      </div>
+    </div>
+  `).join('');
+
+  cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+}
+
 
 
 
