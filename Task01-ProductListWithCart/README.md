@@ -17,7 +17,8 @@ This project simulates a basic **Point of Sale (POS)** system with the following
 
 ## 🌐 Live preview
 
-This is live url for the project deployed through netlify [Live preview](https://cartgenie.netlify.app/task01-productlistwithcart/index.html).
+- This is live url for the project deployed through netlify [Live preview](https://cartgenie.netlify.app/task01-productlistwithcart/index.html).
+- This is Recorded Video For Testing The Functionalities of website [Live Video](https://drive.google.com/file/d/10RJF8oh3vLf3nL4o8zbf-Ow_i95tWc-g/view?usp=drive_link)
 
 ## 💻 Installation
 
