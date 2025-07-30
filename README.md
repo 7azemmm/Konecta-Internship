@@ -31,5 +31,18 @@ Konnecta-Internship/
 - JavaScript
 - .NET Core
 - Angular
+  
+## 📌 Notes
+
+- Each task folder is self-contained and independently executable.
+- Please check the respective folder’s `README.md` for a detailed breakdown.
+
+## 📫 Contact
+
+If you have any questions or feedback, feel free to reach out:
+
+- GitHub: [7azemmm](https://github.com/7azemmm)
+- LinkedIn: [Hazem Mohamed](https://www.linkedin.com/in/hazem-mohamed-50949822b/)
+- Email: hazem.mozakaria2002@gmail.com
 
 
