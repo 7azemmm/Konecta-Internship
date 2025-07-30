@@ -104,4 +104,66 @@
 .product-card-button img {
   width: 20px;
   height: 20px;
+  color: white;
+}
+
+/* Product Quantity Controls */
+.product-card-controls {
+  width: 100%;
+}
+
+.product-quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: hsl(14, 86%, 42%);
+  border-radius: 8px;
+}
+
+.product-quantity-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.product-quantity-decrease {
+  background: hsl(0, 87%, 54%);
+}
+
+.product-quantity-decrease:hover {
+  background: hsl(0, 87%, 45%);
+}
+
+.product-quantity-increase {
+  background: hsl(101, 100%, 59%);
+}
+
+.product-quantity-increase:hover {
+  background: hsl(116, 100%, 63%);
+}
+
+.product-quantity-btn:focus {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 2px;
+}
+
+.product-quantity-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.product-quantity {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: hsl(14, 65%, 9%);
+  min-width: 30px;
+  text-align: center;
 }
