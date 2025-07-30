@@ -244,7 +244,7 @@ async function generateCartPDF() {
   documnet.setFontSize(12);
   cart.forEach((item, index) => {
     documnet.text(`${index + 1}. ${item.name}`, 10, distance);
-    documnet.text(`$${item.price.toFixed(2)} x ${item.quantitdistance}`, 100, distance);
+    documnet.text(`$${item.price.toFixed(2)} x ${item.quantity}`, 100, distance);
     distance += 8;
   });
 
@@ -268,5 +268,4 @@ async function generateCartPDF() {
   const blobUrl = URL.createObjectURL(pdfBlob);
   window.open(blobUrl);
 }
-
 
