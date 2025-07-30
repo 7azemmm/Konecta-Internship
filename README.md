@@ -1,7 +1,7 @@
 # 👨‍💻 Konnecta Internship Tasks
 
-Welcome to my **Konnecta Internship** repository!  
-This repo showcases all the tasks I completed as part of the **FullStack Internship Program** at [Konnecta](https://www.linkedin.com/company/konecta-group/posts/?feedView=all).
+Welcome to my **Konecta Internship** repository!  
+This repo showcases all the tasks I completed as part of the **FullStack Internship Program** at [Konecta](https://www.linkedin.com/company/konecta-group/posts/?feedView=all).
 
 Each task is organized in its own directory with a dedicated `README.md` explaining the implementation, structure, and features in detail.
 
