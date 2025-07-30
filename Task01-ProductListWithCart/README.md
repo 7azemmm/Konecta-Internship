@@ -27,6 +27,7 @@ git pull
 
 ## Images from the website
 ![App Screenshot](design/first-pic.PNG)
+<br>
 ![App Screenshot](design/second-picture.PNG)
 
 
