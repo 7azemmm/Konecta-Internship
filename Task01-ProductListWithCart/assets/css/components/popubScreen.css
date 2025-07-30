@@ -1,0 +1,55 @@
+/* orderPopup Styling */
+.orderPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderPopup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.orderPopup-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  z-index: 1001;
+}
+
+.orderPopup-header {
+  margin-bottom: 1.5rem;
+}
+
+.orderPopup-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.orderPopup-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: hsl(14, 65%, 9%);
+  margin-bottom: 0.5rem;
+}
+
+.orderPopup-text {
+  color: hsl(12, 20%, 44%);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}

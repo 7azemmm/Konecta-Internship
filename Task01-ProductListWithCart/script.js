@@ -1,5 +1,6 @@
 let products = [];
 let cart = [];
+let discountCodes = ['apply10' , 'apply25']
 
 // DOM elements
 const productsGrid = document.getElementById('productsGrid');
@@ -12,6 +13,8 @@ const confirmOrderBtn = document.getElementById('confirmOrderBtn');
 const startNewOrderBtn = document.getElementById('startNewOrderBtn');
 const orderPopup = document.getElementById('orderPopup');
 const orderPopupOverlay = document.getElementById('orderPopupOverlay');
+const orderDiscountBtn = document.getElementById('discountbtn');
+const orderDiscount = document.getElementById('discountCode');
 
 
 async function init() {
@@ -24,6 +27,15 @@ async function init() {
   }
 }
 
+function checkDiscount(){
+  var discountcode = orderDiscount.value;
+  if(discountcode == discountCodes[0]){
+    updateCartDisplay(0.10);
+  }else if(discountcode == discountCodes[1]){
+    updateCartDisplay(0.25);
+  }
+}
+
 // Load products from data.json
 async function loadProducts() {
   try {
@@ -31,7 +43,7 @@ async function loadProducts() {
     products = await response.json();
     console.log(products)
   } catch (error) {
-    console.error('Error loading products:', error);
+    console.log('Error in loading products:', error);
     throw error;
   }
 }
@@ -78,7 +90,7 @@ function addToCart(productName) {
   }
 
   updateCartDisplay();
-  showAddToCartFeedback(productName);
+  
 }
 
 
@@ -102,9 +114,14 @@ function updateQuantity(productName, change) {
 }
 
 
-function updateCartDisplay() {
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+function updateCartDisplay(discountPrecentage) {
+  var totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  var totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  if(discountPrecentage){
+    discountMoney = totalPrice * discountPrecentage;
+    totalPrice -= discountMoney;
+  }
+  
 
   // Update cart count
   cartCount.textContent = `(${totalItems})`;
@@ -185,6 +202,7 @@ function closeorderPopup() {
 confirmOrderBtn.addEventListener('click', confirmOrder);
 startNewOrderBtn.addEventListener('click', startNewOrder);
 orderPopupOverlay.addEventListener('click', closeorderPopup);
+orderDiscountBtn.addEventListener('click' , checkDiscount);
 
 
 

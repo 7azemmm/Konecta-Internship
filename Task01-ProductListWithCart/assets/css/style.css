@@ -1,0 +1,20 @@
+@import url(./components/products.css);
+@import url(./components/cart.css);
+@import url(./components/buttons.css);
+@import url(./components/popubScreen.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Red Hat Text', sans-serif;
+  background: hsl(20, 50%, 98%);
+  color: hsl(14, 65%, 9%);
+}
+
+
+
+
+
