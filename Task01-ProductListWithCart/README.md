@@ -2,6 +2,19 @@
 
 This is my first task for Konnecta Internship. Product List With Cart is a task from [frontend mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d). It Built with HTML , CSS , JS.
 
+## 🛒 Functionalities
+
+This project simulates a basic **Point of Sale (POS)** system with the following core functionalities:
+- **Products Added To Cart**
+- **Discount Codes**
+  - `apply10` → Applies a **10% discount**
+  - `apply25` → Applies a **25% discount**
+
+- **Receipt Generation**
+  - Uses the `jsPDF` library to **generate a downloadable PDF receipt** containing cart details and total amount after discount.
+
+
+
 ## 🌐 Live preview
 
 This is live url for the project deployed through netlify [Live preview](https://cartgenie.netlify.app/task01-productlistwithcart/index.html).
