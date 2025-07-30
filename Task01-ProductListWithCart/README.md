@@ -1,12 +1,12 @@
-# Summary
+## 🛒 Summary
 
 This is my first task for Konnecta Internship. Product List With Cart is a task from [frontend mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d). It Built with HTML , CSS , JS.
 
-## Live preview
+## 🌐 Live preview
 
 This is live url for the project deployed through netlify [Live preview](https://cartgenie.netlify.app/task01-productlistwithcart/index.html).
 
-## Installation
+## 💻 Installation
 
 ```bash
 # initialize the git repo
@@ -25,8 +25,9 @@ git pull
 3. Right-click on `index.html`.
 4. Select **"Open with Live Server"** from the menu.
 
-## Images from the website
+## 🖼️ Images from the website
 ![App Screenshot](design/first-pic.PNG)
+<br>
 <br>
 ![App Screenshot](design/second-picture.PNG)
 
