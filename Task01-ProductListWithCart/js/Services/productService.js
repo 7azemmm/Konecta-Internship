@@ -3,7 +3,7 @@ import { setProducts, products, cart } from '../globalVariables.js';
 import { productsGrid } from '../domElements.js';
 
 export async function loadProducts() {
-  const response = await fetch('../../data.json');
+  const response = await fetch('./data.json');
   const data = await response.json();
   setProducts(data);
 }
