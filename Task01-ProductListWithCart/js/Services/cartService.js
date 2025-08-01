@@ -3,12 +3,16 @@ import { products, cart, appliedDiscount, setCart } from '../globalVariables.js'
 import {
   cartCount, cartEmpty, cartItems, cartFooter, cartTotal
 } from '../domElements.js';
+import { renderProducts } from './productService.js';
+
 
 export function addToCart(productName) {
   const product = products.find(p => p.name === productName);
   if (!product) return;
 
   const existingItem = cart.find(item => item.name === productName);
+  
+
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
@@ -16,22 +20,30 @@ export function addToCart(productName) {
   }
 
   updateCartDisplay();
+  renderProducts();
 }
 
 export function updateQuantity(productName, change) {
   const item = cart.find(item => item.name === productName);
   if (!item) return;
 
-  item.quantity += change;
-  if (item.quantity <= 0) {
+  const newQuantity = item.quantity + change;
+  
+
+  if (newQuantity <= 0) {
     RemoveFromCart(productName);
+  } else {
+    item.quantity = newQuantity;
   }
+  
   updateCartDisplay();
+  renderProducts();
 }
 
 export function RemoveFromCart(productName) {
   setCart(cart.filter(item => item.name !== productName));
   updateCartDisplay();
+  renderProducts();
 }
 
 export function updateCartDisplay(discountPercentage = appliedDiscount) {
@@ -49,12 +61,19 @@ export function updateCartDisplay(discountPercentage = appliedDiscount) {
   cartItems.style.display = cart.length === 0 ? 'none' : 'block';
   cartFooter.style.display = cart.length === 0 ? 'none' : 'block';
 
-  cartItems.innerHTML = cart.map(item => `
+  cartItems.innerHTML = cart.map(item => {
+    const originalProduct = products.find(p => p.name === item.name);
+    const remainingStock = originalProduct.quantity - item.quantity;
+    
+    return `
     <div class="cart-item">
       <img src="${item.image.thumbnail}" alt="${item.name}" class="cart-item-image">
       <div class="cart-item-details">
         <h4 class="cart-item-name">${item.name}</h4>
         <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+        <p class="cart-item-stock">
+          Stock: ${remainingStock} available
+        </p>
       </div>
       <div class="cart-item-controls">
         <button class="cart-item-button-decrease" onclick="updateQuantity('${item.name}', -1)">
@@ -68,7 +87,8 @@ export function updateCartDisplay(discountPercentage = appliedDiscount) {
           <img src="./assets/images/wrong.png" alt="">
         </button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
 }

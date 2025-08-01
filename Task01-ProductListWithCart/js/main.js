@@ -22,3 +22,5 @@ startNewOrderBtn.addEventListener('click', startNewOrder);
 orderPopupOverlay.addEventListener('click', closeorderPopup);
 orderDiscountBtn.addEventListener('click', checkDiscount);
 printPdf.addEventListener('click', generateCartPDF);
+
+

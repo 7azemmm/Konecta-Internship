@@ -228,6 +228,15 @@
   flex-shrink: 0;
 }
 
+
+/* Cart item stock styling */
+.cart-item-stock {
+  font-size: 12px;
+  color: #292828;
+  margin: 2px 0;
+  font-weight: 500;
+}
+
 /* Responsive design for cart discount */
 @media (max-width: 768px) {
   .cart-total {
