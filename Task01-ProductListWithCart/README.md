@@ -53,10 +53,10 @@ git pull
 4. Select **"Open with Live Server"** from the menu.
 
 ## 🖼️ Images from the website
-![App Screenshot](assets/images/first-screen.png)
+![App Screenshot](assets/images/first-screen.PNG)
 <br>
 <br>
-![App Screenshot](assets/images/first-screen.png)
+![App Screenshot](assets/images/first-screen.PNG)
 
 
 
