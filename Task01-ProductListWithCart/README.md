@@ -4,14 +4,15 @@ This is my first task for Konnecta Internship. Product List With Cart is a task 
 
 ## 🛒 Functionalities
 
-This project simulates a basic **Point of Sale (POS)** system with the following core functionalities:
-- **Products Added To Cart**
-- **Discount Codes**
-  - `apply10` → Applies a **10% discount**
-  - `apply25` → Applies a **25% discount**
+This project implements a simple yet effective **Point of Sale (POS)** system with the following key features:
 
-- **Receipt Generation**
-  - Uses the `jsPDF` library to **generate a downloadable PDF receipt** containing cart details and total amount after discount.
+- **Add Products to Cart:** Users can see all products and add them to their shopping cart with quantity controls.
+- **Discount Code Support:**  
+  - `apply10` — Applies a 10% discount  
+  - `apply25` — Applies a 25% discount
+- **PDF Receipt Generation:** Generates a detailed, downloadable receipt using the `jsPDF` library, including all cart items and the final amount after discounts.
+- **Optimized Performance:** Product images utilize **lazy loading** to speed up page load times and reduce bandwidth consumption.
+- **Modular JavaScript Architecture:** Codebase is organized into well-separated modules (`main.js`, `uiHandlers.js`, etc.) for improved maintainability.
 
 
 
