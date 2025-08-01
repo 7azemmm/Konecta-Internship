@@ -57,6 +57,7 @@ git pull
 <br>
 <br>
 ![App Screenshot](assets/images/second-screen.PNG)
-
+<br>
+![App Screenshot](assets/images/print-pdf.PNG)
 
 
