@@ -1,0 +1,14 @@
+export const productsGrid = document.getElementById('productsGrid');
+export const cartCount = document.getElementById('cartCount');
+export const cartEmpty = document.getElementById('cartEmpty');
+export const cartItems = document.getElementById('cartItems');
+export const cartFooter = document.getElementById('cartFooter');
+export const cartTotal = document.getElementById('cartTotal');
+export const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+export const startNewOrderBtn = document.getElementById('startNewOrderBtn');
+export const orderPopup = document.getElementById('orderPopup');
+export const orderPopupOverlay = document.getElementById('orderPopupOverlay');
+export const orderDiscountBtn = document.getElementById('discountbtn');
+export const orderDiscount = document.getElementById('discountCode');
+export const printPdf = document.getElementById('printPdfBtn');
+export const discountCodeStatus = document.getElementById('DiscoundCodeStatus');

@@ -14,15 +14,23 @@ Konnecta-Internship/
 │
 ├── task01-productlistwithcart/
 │   ├── index.html
-│   ├── styles.css
-│   ├── script.js
+│   ├── assets/
+│   │   ├── css/
+│   │   ├── fonts/
+│   │   └── image/
+│   ├── js/
+│   │   ├── services/
+│   │   ├── domElements.js          # DOM element selectors
+│   │   ├── globalVariables.js      # Global state: products, cart, discount
+│   │   ├── main.js                 # Main file that imports and initializes all logic
+│   │   └── uiHandlers.js           # Handles UI updates and event listeners
 │   ├── design/
-│   └── README.md  ← Detailed explanation of Task 01
+│   └── README.md                   # Detailed explanation of Task 01
 │
 ├── task02-.../
-│   └── README.md  ← Each task will follow the same structure
+│   └── README.md                   # Each task follows the same structure
 │
-└── README.md  ← This file (overview of the entire internship)
+└── README.md                       # Overview of the entire internship
 ```
 ## 🛠️ Tech Stack
 
