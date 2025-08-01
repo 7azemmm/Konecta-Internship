@@ -56,7 +56,7 @@ git pull
 ![App Screenshot](assets/images/first-screen.PNG)
 <br>
 <br>
-![App Screenshot](assets/images/first-screen.PNG)
+![App Screenshot](assets/images/second-screen.PNG)
 
 
 
