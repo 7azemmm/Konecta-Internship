@@ -1,10 +1,8 @@
 package com.example.ConverterApi.Services;
 
 import com.example.ConverterApi.Exceptions.InvalidUnitException;
-import com.example.ConverterApi.Interfaces.ConversionStrategy;
 import com.example.ConverterApi.Models.ConversionRequest;
 import com.example.ConverterApi.Models.ConversionResponse;
-import com.example.ConverterApi.enums.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,7 +10,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class TemperatureService implements ConversionStrategy {
+public class TemperatureService  {
 
     private final Map<String, Function<Double, Double>> conversions = new HashMap<>();
     private final Map<String, String> formulas = new HashMap<>();
@@ -38,8 +36,6 @@ public class TemperatureService implements ConversionStrategy {
     }
 
 
-
-    @Override
     public ConversionResponse convert(ConversionRequest request) {
         String key = request.getFromUnit().toLowerCase() + "-" + request.getToUnit().toLowerCase();
 
