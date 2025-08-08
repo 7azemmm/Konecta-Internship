@@ -33,10 +33,6 @@ This approach allows adding new behaviors without modifying existing code, follo
 2. Navigate to the project directory
 3. Run the application:
 
-```bash
-mvn spring-boot:run
-```
-
 The application will start on `http://localhost:8080`
 
 ## API Documentation
@@ -59,6 +55,7 @@ The project includes an `ApiTest.http` file for convenient API testing. You can 
 - IntelliJ IDEA's built-in HTTP client
 - Visual Studio Code with the REST Client extension
 - Any other HTTP client that supports `.http` files
+  ![api Test](./Images/ConversionAPI.PNG)
 
 ## API Endpoints
 
@@ -75,40 +72,10 @@ The project includes an `ApiTest.http` file for convenient API testing. You can 
 - **GET** `/api/v1/check-health` - Health check endpoint
 - **GET** `/api/v1/sample-payload` - Get sample request payload
 
-## Example Usage
+### History Endpoints
 
-### Temperature Conversion
-
-```bash
-curl -X POST http://localhost:8080/api/v1/convert \
-  -H "Content-Type: application/json" \
-  -d '{
-    "category": "TEMPERATURE",
-    "fromUnit": "CELSIUS",
-    "toUnit": "FAHRENHEIT",
-    "value": 25.0
-  }'
-```
-
-Response:
-```json
-{
-  "result": 77.0,
-  "formula": "tempDegree × 9/5 + 32",
-  "status": "success"
-}
-```
-
-### Get Available Units
-
-```bash
-curl "http://localhost:8080/api/v1/units?category=TEMPERATURE"
-```
-
-Response:
-```json
-["CELSIUS", "FAHRENHEIT", "KELVIN"]
-```
+- **GET** `/api/v1/history/csv` - Get conversion history in csv file
+- **GET** `/api/v1/history/json` - Get conversion history in json 
 
 ## Supported Conversions
 
