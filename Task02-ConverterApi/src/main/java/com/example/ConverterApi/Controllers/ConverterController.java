@@ -12,9 +12,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("api/v1")
@@ -54,7 +59,7 @@ public class ConverterController {
                 mediaType = "application/json",
                 examples = @ExampleObject(
                     name = "Validation Error",
-                    value = "{\"timestamp\": \"2024-01-01T12:00:00\", \"status\": 400, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"fromUnit\": \"From unit 'INVALID' is not valid for category 'TEMPERATURE'\", \"value\": \"Negative values are not allowed for category 'WEIGHT'\"}}"
+                    value = "{\"timestamp\": \"2025-08-08T12:00:00\", \"status\": 400, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"fromUnit\": \"From unit 'INVALID' is not valid for category 'TEMPERATURE'\", \"value\": \"Negative values are not allowed for category 'WEIGHT'\"}}"
                 )
             )
         ),
@@ -65,7 +70,7 @@ public class ConverterController {
                 mediaType = "application/json",
                 examples = @ExampleObject(
                     name = "Missing Fields Error",
-                    value = "{\"timestamp\": \"2024-01-01T12:00:00\", \"status\": 422, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"category\": \"Category must be provided\", \"fromUnit\": \"From unit must be provided\"}}"
+                    value = "{\"timestamp\": \"2025-08-08T12:00:00\", \"status\": 422, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"category\": \"Category must be provided\", \"fromUnit\": \"From unit must be provided\"}}"
                 )
             )
         )
@@ -82,9 +87,15 @@ public class ConverterController {
                 )
             )
         )
-        @RequestBody @Valid ConversionRequest request
+        @RequestBody @Valid ConversionRequest request , HttpSession session
     ) {
         ConversionResponse response = conversionService.convert(request);
+        List<ConversionResponse> history = (List<ConversionResponse>) session.getAttribute("conversionHistory");
+        if (history == null) {
+            history = new ArrayList<>();
+        }
+        history.add(response);
+        session.setAttribute("conversionHistory", history);
         return ResponseEntity.ok(response);
     }
 }
