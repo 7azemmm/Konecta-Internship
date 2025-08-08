@@ -30,7 +30,9 @@ public class ConverterController {
     @PostMapping("/convert")
     @Operation(
         summary = "Convert units",
-        description = "Convert a value from one unit to another within the same category (temperature, weight,time)"
+        description = "Convert a value from one unit to another within the same category (temperature, weight, time). " +
+                     "Temperature allows negative values, while weight and time require positive values. " +
+                     "Units must match the specified category."
     )
     @ApiResponses(value = {
         @ApiResponse(
@@ -41,21 +43,32 @@ public class ConverterController {
                 schema = @Schema(implementation = ConversionResponse.class),
                 examples = @ExampleObject(
                     name = "Temperature Conversion",
-                    value = "{\"result\": 32.0, \"formula\": \" tempDegree × 9/5 + 32\", \"status\": \"success\"}"
+                    value = "{\"result\": 32.0, \"formula\": \"tempDegree × 9/5 + 32\", \"status\": \"success\"}"
                 )
             )
         ),
         @ApiResponse(
             responseCode = "400",
-            description = "Unsupported Temperature conversion: Celsius - gram",
+            description = "Validation error - invalid units, category mismatch, or negative values for non-temperature categories",
             content = @Content(
                 mediaType = "application/json",
                 examples = @ExampleObject(
-                    name = "Invalid Unit Error",
-                    value = "{\"error\": \"Unsupported unit conversion: CELSIUS to gram\"}"
+                    name = "Validation Error",
+                    value = "{\"timestamp\": \"2024-01-01T12:00:00\", \"status\": 400, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"fromUnit\": \"From unit 'INVALID' is not valid for category 'TEMPERATURE'\", \"value\": \"Negative values are not allowed for category 'WEIGHT'\"}}"
                 )
             )
         ),
+        @ApiResponse(
+            responseCode = "422",
+            description = "Invalid request format or missing required fields",
+            content = @Content(
+                mediaType = "application/json",
+                examples = @ExampleObject(
+                    name = "Missing Fields Error",
+                    value = "{\"timestamp\": \"2024-01-01T12:00:00\", \"status\": 422, \"error\": \"Validation Error\", \"message\": \"Request validation failed\", \"errors\": {\"category\": \"Category must be provided\", \"fromUnit\": \"From unit must be provided\"}}"
+                )
+            )
+        )
     })
     public ResponseEntity<ConversionResponse> convert(
         @Parameter(
