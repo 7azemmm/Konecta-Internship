@@ -9,9 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
-
 @RestController
 @RequestMapping("api/v1")
 public class ConverterController {
@@ -22,27 +19,16 @@ public class ConverterController {
         this.conversionService = conversionService;
     }
 
-
     @PostMapping("/convert")
     public ResponseEntity<ConversionResponse> convert(@RequestBody @Valid ConversionRequest request) {
-        Category category = request.getCategory();
-
-        ConversionResponse response;
-
-        switch (category) {
-            case category.TEMPERATURE -> response = conversionService.convertTemperature(request);
-            case category.WEIGHT -> response = conversionService.convertWeight(request);
-            case category.TIME -> response = conversionService.convertTime(request);
-            default -> throw new IllegalArgumentException("Invalid category");
-        }
-
+        ConversionResponse response = conversionService.convert(request);
         return ResponseEntity.ok(response);
     }
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 package com.example.ConverterApi.Services;
 
 import com.example.ConverterApi.Exceptions.InvalidUnitException;
+import com.example.ConverterApi.Interfaces.ConversionStrategy;
 import com.example.ConverterApi.Models.ConversionRequest;
 import com.example.ConverterApi.Models.ConversionResponse;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class TimeService {
+public class TimeService implements ConversionStrategy {
 
     private final Map<String, Function<Double, Double>> conversionsUnits = new HashMap<>();
     private final Map<String, String> formulas = new HashMap<>();
@@ -57,6 +58,7 @@ public class TimeService {
         formulas.put("day-hour", "timeUnit * 24");
     }
 
+    @Override
     public ConversionResponse convert(ConversionRequest request) {
         String key = request.getFromUnit().toLowerCase() + "-" + request.getToUnit().toLowerCase();
 

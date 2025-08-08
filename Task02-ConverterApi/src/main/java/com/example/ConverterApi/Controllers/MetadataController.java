@@ -1,62 +1,43 @@
 package com.example.ConverterApi.Controllers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.example.ConverterApi.Services.MetadataService;
+import com.example.ConverterApi.enums.Category;
 import org.springframework.http.ResponseEntity;
-import com.example.ConverterApi.enums.*;
-
-import java.util.List;
-import java.util.Map;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
 public class MetadataController {
 
-    private static final Map<Category, List<String>> Units = Map.of(
-            Category.TEMPERATURE, List.of("celsius", "fahrenheit", "kelvin"),
-            Category.WEIGHT, List.of("gram", "kilogram", "pound", "ounce"),
-            Category.TIME, List.of("second", "minute", "hour", "day")
-    );
+    private final MetadataService metadataService;
+
+    public MetadataController(MetadataService metadataService) {
+        this.metadataService = metadataService;
+    }
 
     @GetMapping("/units")
     public ResponseEntity<?> getUnits(@RequestParam Category category) {
-        List<String> units = Units.get(category);
+        var units = metadataService.getUnits(category);
         if (units == null) {
-            return ResponseEntity.badRequest().body(Map.of("error", "Unsupported category: " + category));
+            return ResponseEntity.badRequest().body(
+                    java.util.Map.of("error", "Unsupported category: " + category)
+            );
         }
         return ResponseEntity.ok(units);
     }
 
     @GetMapping("/categories")
     public ResponseEntity<?> getCategories() {
-        if(Units.isEmpty()) {
-            return ResponseEntity.badRequest().body(Map.of("error", "No Categories available"));
-        }
-        return ResponseEntity.ok(Units.keySet());
+        return ResponseEntity.ok(metadataService.getCategories());
     }
 
-    @GetMapping("/health")
+    @GetMapping("/check-health")
     public ResponseEntity<String> healthCheck() {
-        return ResponseEntity.ok("status Unit Converter API is up and running");
+        return ResponseEntity.ok(metadataService.getHealthStatus());
     }
 
-    @GetMapping("/sample")
-    public ResponseEntity<Map<String ,Object>> getSample() {
-        return ResponseEntity.ok(Map.of(
-                "category", "TEMPERATURE",
-                "fromUnit", "Celsius",
-                "toUnit", "Fahrenheit",
-                "value", 35,
-                "note", "This is not part of the request body — just notes for you. " +
-                        "Supported categories are:" +
-                        "- TIME [day, minute, hour, second]" +
-                        "- TEMPERATURE [Celsius, Fahrenheit, Kelvin]" +
-                        "- WEIGHT [Gram, Kilogram, Pound, Ounce]" +
-                        "Category is case sensitive but units are not." +
-                        "No negative values supported for now."
-        ));
+    @GetMapping("/sample-payload")
+    public ResponseEntity<?> getSample() {
+        return ResponseEntity.ok(metadataService.getSample());
     }
-
 }
