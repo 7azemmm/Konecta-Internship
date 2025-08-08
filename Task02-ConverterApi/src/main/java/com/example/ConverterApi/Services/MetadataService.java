@@ -28,13 +28,8 @@ public class MetadataService {
                 "category", "TEMPERATURE",
                 "fromUnit", "Celsius",
                 "toUnit", "Fahrenheit",
-                "value", 35,
-                "note", "This is not part of the request body" +
-                        "Supported categories are: TIME [day, minute, hour, second], " +
-                        "TEMPERATURE [Celsius, Fahrenheit, Kelvin], " +
-                        "WEIGHT [Gram, Kilogram, Pound, Ounce]. " +
-                        "Category is case sensitive but units are not. " +
-                        "No negative values supported for now."
+                "value", 35
+
         );
     }
 
