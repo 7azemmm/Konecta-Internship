@@ -13,6 +13,16 @@ A Spring Boot REST API that provides unit conversion capabilities for temperatur
 - **API Testing**: Includes ApiTest.http file for convenient API testing
 - **Swagger Documentation**: Interactive API documentation
 
+## Strategy Design Pattern
+
+While developing the project, I noticed a lot of repetitive `if/else` and `switch` statements.  
+To make the codebase more **readable**, **maintainable**, and **extensible**, I decided to implement the **Strategy Design Pattern**.
+
+This approach allows adding new behaviors without modifying existing code, following the **Open/Closed Principle**.
+
+![Strategy Design Pattern](./Images/strategyPattern.PNG)
+
+
 
 
 ## Getting Started
