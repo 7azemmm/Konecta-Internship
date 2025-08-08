@@ -55,6 +55,8 @@ The project includes an `ApiTest.http` file for convenient API testing. You can 
 - IntelliJ IDEA's built-in HTTP client
 - Visual Studio Code with the REST Client extension
 - Any other HTTP client that supports `.http` files
+  ![api Test](./Images/apitest.PNG)
+- I have made a collection in postman for api testing
   ![api Test](./Images/ConversionAPI.PNG)
 
 ## API Endpoints
