@@ -15,7 +15,7 @@ public class ConversionService {
     }
 
     public ConversionResponse convertTemperature(ConversionRequest request) {
-        return temperatureService.CelsiusToFahrenheit(request);
+        return temperatureService.convert(request);
     }
 
 

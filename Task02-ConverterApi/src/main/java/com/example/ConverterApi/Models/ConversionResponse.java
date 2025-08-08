@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConversionResponse {
-    private double result;
-    private String status;
+    public double result;
+    public String formula;
+    public String status;
+
 }

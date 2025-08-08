@@ -5,6 +5,7 @@ import com.example.ConverterApi.Models.ConversionRequest;
 import com.example.ConverterApi.Models.ConversionResponse;
 import com.example.ConverterApi.Services.ConversionService;
 import com.example.ConverterApi.enums.Category;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +22,15 @@ public class ConverterController {
 
 
     @PostMapping("/convert")
-    public ResponseEntity<ConversionResponse> convert(@RequestBody ConversionRequest request) {
+    public ResponseEntity<ConversionResponse> convert(@RequestBody @Valid ConversionRequest request) {
         Category category = request.getCategory();
 
         ConversionResponse response;
 
         switch (category) {
-            case TEMPERATURE -> response = conversionService.convertTemperature(request);
-            default -> throw new IllegalArgumentException("Invalid category");
+            case TEMPERATURE : response = conversionService.convertTemperature(request);
+            break;
+            default: throw new IllegalArgumentException("Invalid category");
         }
 
         return ResponseEntity.ok(response);
