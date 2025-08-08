@@ -25,3 +25,8 @@ Accept: application/json
   "toUnit": "KiloGram",
   "value": 1000
 }
+
+###
+GET localhost:8080/api/v1/categories
+###
+GET localhost:8080/api/v1/sample
