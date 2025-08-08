@@ -20,10 +20,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "category": "WEIGHT",
-  "fromUnit": "gram",
-  "toUnit": "KiloGram",
-  "value": 1000
+  "category": "TIME",
+  "fromUnit": "minute",
+  "toUnit": "hour",
+  "value": 180
 }
 
 ###

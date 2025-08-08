@@ -32,6 +32,7 @@ public class ConverterController {
         switch (category) {
             case category.TEMPERATURE -> response = conversionService.convertTemperature(request);
             case category.WEIGHT -> response = conversionService.convertWeight(request);
+            case category.TIME -> response = conversionService.convertTime(request);
             default -> throw new IllegalArgumentException("Invalid category");
         }
 

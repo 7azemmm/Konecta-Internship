@@ -10,10 +10,12 @@ public class ConversionService {
 
     private final TemperatureService temperatureService;
     private final WeightService weightService;
+    private final TimeService timeService;
 
-    public ConversionService(TemperatureService temperatureService , WeightService weightService) {
+    public ConversionService(TemperatureService temperatureService , WeightService weightService, TimeService timeService) {
         this.temperatureService = temperatureService;
         this.weightService = weightService;
+        this.timeService = timeService;
     }
 
     public ConversionResponse convertTemperature(ConversionRequest request) {
@@ -22,6 +24,9 @@ public class ConversionService {
 
     public ConversionResponse convertWeight(ConversionRequest request) {
         return weightService.convert(request);
+    }
+    public ConversionResponse convertTime(ConversionRequest request) {
+        return timeService.convert(request);
     }
 
 }
